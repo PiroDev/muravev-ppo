@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src", // Lets you set a base directory to resolve non-absolute module names.
+    "outDir": "dist",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "paths": {
+      "@/*": ["*"]
+    },
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*"]
+}

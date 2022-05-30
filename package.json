@@ -1,0 +1,28 @@
+{
+  "name": "spell-warfare",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "tsc && tsc-alias && node --experimental-specifier-resolution=node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PiroDev/muravev-ppo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PiroDev/muravev-ppo/issues"
+  },
+  "homepage": "https://github.com/PiroDev/muravev-ppo#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.36",
+    "tsc-alias": "^1.6.7",
+    "typescript": "^4.6.4"
+  }
+}
