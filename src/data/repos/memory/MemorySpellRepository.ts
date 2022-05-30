@@ -16,8 +16,8 @@ export default class MemorySpellRepository implements ISpellRepository {
     }
     
     const spells = player.Spells()
-    if (!spell[spell.Name()]) {
-      spells[spell.Name()] = spell
+    if (!spells.includes(spell)) {
+      spells.push(spell)
     }
   }
   
@@ -28,11 +28,12 @@ export default class MemorySpellRepository implements ISpellRepository {
     }
     
     const spells = player.Spells()
-    if (!spells[spellName]) {
+    const spell = spells.find(s => s.Name() === spellName)
+    if (!spell) {
       return null
     }
     
-    return spells[spellName]
+    return spell
   }
   
   RemoveSpell(playerName: string, spellName: string): void {
@@ -42,7 +43,10 @@ export default class MemorySpellRepository implements ISpellRepository {
     }
   
     const spells = player.Spells()
-    spells[spellName] = undefined
+    const spellIndex = spells.findIndex(s => s.Name() === spellName)
+    if (spellIndex !== undefined) {
+      spells.splice(spellIndex, 1)
+    }
   }
 
 }
