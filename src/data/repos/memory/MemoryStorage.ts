@@ -1,9 +1,7 @@
 import IMemoryStorage from '@/data/repos/memory/IMemoryStorage'
 import { Player } from '@/data/models'
 
-const data: { [name: string]: Player } = {}
-
-class MemoryStorage implements IMemoryStorage {
+export default class MemoryStorage implements IMemoryStorage {
   private readonly storage: { [name: string]: Player }
   
   constructor(storage: { [name: string]: Player }) {
@@ -14,5 +12,3 @@ class MemoryStorage implements IMemoryStorage {
     return this.storage
   }
 }
-
-export const storage = new MemoryStorage(data)
