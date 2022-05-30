@@ -97,3 +97,7 @@ Web SPA. Потому что:
 
 ### Транспортные сущности
 ![Structs](./docs/Structs.svg)
+
+### Модуль связки UI и бизнес-логики
+![GameInteractor](./docs/GameInteractor.svg)
+
