@@ -105,5 +105,4 @@ Typescript для frontend и бизнес-логики. Потому что:
 ![Structs](./docs/Structs.svg)
 
 ### Модуль связки UI и бизнес-логики
-![GameInteractor](./docs/GameInteractor.svg)
-
+![GameBoundary](./docs/GameBoundary.svg)
