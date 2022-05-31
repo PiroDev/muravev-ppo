@@ -112,3 +112,6 @@ Typescript для UI и бизнес-логики. Потому что:
 
 ### Модуль связки UI и бизнес-логики
 ![GameBoundary](./docs/GameBoundary.svg)
+
+### Модуль GUI
+![UI](./docs/UI.svg)
