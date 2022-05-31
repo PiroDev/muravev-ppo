@@ -115,3 +115,6 @@ Typescript для UI и бизнес-логики. Потому что:
 
 ### Модуль GUI
 ![UI](./docs/UI.svg)
+
+### Технологический (консольный) UI
+![ConsoleUI](./docs/ConsoleUI.svg)
