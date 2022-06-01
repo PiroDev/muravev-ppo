@@ -2,7 +2,7 @@ import Player from '@/game/characters/Player'
 import { SpellParams, UsableSpellEffect } from '@/game/spells'
 import { GameEventBus } from '@/game/events'
 import PlayerEventProxy from '@/game/events/PlayerEventProxy'
-import IStatsEvaluable from '@/game/stats/IStatsEvaluable'
+import { IMageCharacter } from '@/game/characters'
 
 export default class GameContext {
   private readonly players: PlayerEventProxy[]
@@ -30,7 +30,7 @@ export default class GameContext {
     return this.round
   }
   
-  GetPlayer(playerId: number) : IStatsEvaluable | null {
+  GetPlayer(playerId: number) : IMageCharacter | null {
     if (playerId < 0 || playerId >= this.players.length) {
       return null
     }
@@ -38,7 +38,7 @@ export default class GameContext {
     return this.players[playerId]
   }
   
-  GetPlayers(): IStatsEvaluable[] {
+  GetPlayers(): IMageCharacter[] {
     return this.players
   }
   
