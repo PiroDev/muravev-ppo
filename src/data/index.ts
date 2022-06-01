@@ -1,3 +1,4 @@
 import * as repos from '@/data/repos'
+import * as boundary from '@/data/boundary'
 
-export {repos}
+export { boundary, repos }
