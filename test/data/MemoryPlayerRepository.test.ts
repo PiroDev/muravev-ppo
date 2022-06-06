@@ -1,25 +1,33 @@
 import { assertEq, defineTest } from '#/utils'
-import { Player, Spell, SpellEffect } from '@/data/models'
+import { PlayerData, SpellData } from '@/dto'
 import { MemoryPlayerRepository, MemoryStorage } from '@/data/repos/memory'
 
 export const memoryPlayerRepositoryTestSuite = () => {
-  const fireball = new Spell('Fireball', 1, 1, ['target'], [
-      [
-        new SpellEffect('hp-', ['target', 1])
-      ]
-    ]
-  )
+  const fireball: SpellData = {
+    Name: 'Fireball',
+    Params: ['target'],
+    Manacost: 1,
+    Cooldown: 1,
+    Effects: [
+      [{Params: ['target', 1], Type: 'hp-'}]
+    ],
+  }
   
-  const newPlayer = (name: string, spells: Spell[] = [fireball]) => new Player(name, spells)
+  const newPlayer = (name: string, spells: SpellData[] = [fireball]) => {
+    return {
+      Name: name,
+      Spells: spells
+    } as PlayerData
+  }
   
-  const data: { [name: string]: Player } = {
+  const data: { [name: string]: PlayerData } = {
     'PiroDev': newPlayer('PiroDev'),
     'Vayral': newPlayer('Vayral'),
   }
   
   const newStorage = () => new MemoryStorage(data)
   
-  defineTest(`MemoryPlayerRepository should return existing Player`, () => {
+  defineTest(`MemoryPlayerRepository should return existing PlayerData`, () => {
     const playerRepo = new MemoryPlayerRepository(newStorage())
     
     const player = playerRepo.GetPlayer('PiroDev')
@@ -27,7 +35,7 @@ export const memoryPlayerRepositoryTestSuite = () => {
     return assertEq(player, data['PiroDev'])
   })
   
-  defineTest(`MemoryPlayerRepository should add new Player`, () => {
+  defineTest(`MemoryPlayerRepository should add new PlayerData`, () => {
     const playerRepo = new MemoryPlayerRepository(newStorage())
     const player = newPlayer('Bobston')
     
@@ -36,7 +44,7 @@ export const memoryPlayerRepositoryTestSuite = () => {
     return assertEq(player, data['Bobston'])
   })
   
-  defineTest(`MemoryPlayerRepository should remove existing Player`, () => {
+  defineTest(`MemoryPlayerRepository should remove existing PlayerData`, () => {
     const playerRepo = new MemoryPlayerRepository(newStorage())
     
     playerRepo.RemovePlayer('PiroDev')
@@ -44,7 +52,7 @@ export const memoryPlayerRepositoryTestSuite = () => {
     return assertEq(playerRepo['PiroDev'], undefined)
   })
   
-  defineTest(`MemoryPlayerRepository should return null if no such Player`, () => {
+  defineTest(`MemoryPlayerRepository should return null if no such PlayerData`, () => {
     const playerRepo = new MemoryPlayerRepository(newStorage())
     
     const player = playerRepo.GetPlayer('Alex')
