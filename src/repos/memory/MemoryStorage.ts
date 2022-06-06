@@ -1,4 +1,4 @@
-import IMemoryStorage from '@/data/repos/memory/IMemoryStorage'
+import IMemoryStorage from '@/repos/memory/IMemoryStorage'
 import { PlayerData } from '@/dto'
 
 export default class MemoryStorage implements IMemoryStorage {

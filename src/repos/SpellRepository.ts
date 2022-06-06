@@ -1,6 +1,6 @@
-import ISpellRepository from '@/data/repos/ISpellRepository'
+import ISpellRepository from '@/repos/ISpellRepository'
 import { SpellData } from '@/dto'
-import IPlayerRepository from '@/data/repos/IPlayerRepository'
+import IPlayerRepository from '@/repos/IPlayerRepository'
 
 export default class SpellRepository implements ISpellRepository {
   private playerRepo: IPlayerRepository

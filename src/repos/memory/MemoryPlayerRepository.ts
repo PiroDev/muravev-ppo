@@ -1,6 +1,6 @@
-import { IPlayerRepository } from '@/data/repos'
+import { IPlayerRepository } from '@/repos'
 import { PlayerData } from '@/dto'
-import IMemoryStorage from '@/data/repos/memory/IMemoryStorage'
+import IMemoryStorage from '@/repos/memory/IMemoryStorage'
 
 export default class MemoryPlayerRepository implements IPlayerRepository {
   private readonly storage: IMemoryStorage
