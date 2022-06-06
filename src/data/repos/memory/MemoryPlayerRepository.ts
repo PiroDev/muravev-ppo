@@ -9,7 +9,7 @@ export default class MemoryPlayerRepository implements IPlayerRepository {
     this.storage = storage
   }
   
-  AddPlayer(player: PlayerData): void {
+  SetPlayer(player: PlayerData): void {
     this.storage.Players()[player.Name] = player
   }
   

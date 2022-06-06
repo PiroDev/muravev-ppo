@@ -1,15 +1,15 @@
-import { ISpellRepository } from '@/data/repos'
+import ISpellRepository from '@/data/repos/ISpellRepository'
 import { SpellData } from '@/dto'
-import MemoryPlayerRepository from '@/data/repos/memory/MemoryPlayerRepository'
+import IPlayerRepository from '@/data/repos/IPlayerRepository'
 
-export default class MemorySpellRepository implements ISpellRepository {
-  private readonly playerRepo: MemoryPlayerRepository
+export default class SpellRepository implements ISpellRepository {
+  private playerRepo: IPlayerRepository
   
-  constructor(playerRepo: MemoryPlayerRepository) {
+  constructor(playerRepo: IPlayerRepository) {
     this.playerRepo = playerRepo
   }
   
-  AddSpell(playerName: string, spell: SpellData): void {
+  SetSpell(playerName: string, spell: SpellData): void {
     const player = this.playerRepo.GetPlayer(playerName)
     if (!player) {
       return
@@ -19,6 +19,8 @@ export default class MemorySpellRepository implements ISpellRepository {
     if (!spells.includes(spell)) {
       spells.push(spell)
     }
+    
+    this.playerRepo.SetPlayer(player)
   }
   
   GetSpell(playerName: string, spellName: string): SpellData | null {
@@ -41,12 +43,13 @@ export default class MemorySpellRepository implements ISpellRepository {
     if (!player) {
       return
     }
-  
+    
     const spells = player.Spells
     const spellIndex = spells.findIndex(s => s.Name === spellName)
     if (spellIndex !== undefined) {
       spells.splice(spellIndex, 1)
     }
+    
+    this.playerRepo.SetPlayer(player)
   }
-
 }
