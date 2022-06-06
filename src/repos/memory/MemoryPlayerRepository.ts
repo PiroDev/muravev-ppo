@@ -1,6 +1,6 @@
-import { IPlayerRepository } from '@/data/repos'
-import { Player } from '@/data/models'
-import IMemoryStorage from '@/data/repos/memory/IMemoryStorage'
+import { IPlayerRepository } from '@/repos'
+import { PlayerData } from '@/dto'
+import IMemoryStorage from '@/repos/memory/IMemoryStorage'
 
 export default class MemoryPlayerRepository implements IPlayerRepository {
   private readonly storage: IMemoryStorage
@@ -9,11 +9,11 @@ export default class MemoryPlayerRepository implements IPlayerRepository {
     this.storage = storage
   }
   
-  AddPlayer(player: Player): void {
-    this.storage.Players()[player.Name()] = player
+  SetPlayer(player: PlayerData): void {
+    this.storage.Players()[player.Name] = player
   }
   
-  GetPlayer(name: string): Player | null {
+  GetPlayer(name: string): PlayerData | null {
     if (!this.storage.Players()[name]) {
       return null
     }
