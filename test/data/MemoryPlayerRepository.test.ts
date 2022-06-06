@@ -1,6 +1,6 @@
 import { assertEq, defineTest } from '#/utils'
 import { PlayerData, SpellData } from '@/dto'
-import { MemoryPlayerRepository, MemoryStorage } from '@/data/repos/memory'
+import { MemoryPlayerRepository, MemoryStorage } from '@/repos/memory'
 
 export const memoryPlayerRepositoryTestSuite = () => {
   const fireball: SpellData = {
@@ -39,7 +39,7 @@ export const memoryPlayerRepositoryTestSuite = () => {
     const playerRepo = new MemoryPlayerRepository(newStorage())
     const player = newPlayer('Bobston')
     
-    playerRepo.AddPlayer(player)
+    playerRepo.SetPlayer(player)
     
     return assertEq(player, data['Bobston'])
   })

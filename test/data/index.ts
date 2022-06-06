@@ -1,7 +1,7 @@
 import { memoryPlayerRepositoryTestSuite } from '#/data/MemoryPlayerRepository.test'
-import { memorySpellRepositoryTestSuite } from '#/data/MemorySpellRepository.test'
+import { SpellRepositoryTestSuite } from '#/data/SpellRepository.test'
 
 export const dataModuleTestSuites = () => {
   memoryPlayerRepositoryTestSuite()
-  memorySpellRepositoryTestSuite()
+  SpellRepositoryTestSuite()
 }
