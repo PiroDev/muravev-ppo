@@ -1,5 +1,5 @@
 export const assertEq = (a, b) => {
-  if (a === b) {
+  if (a === b || a instanceof Object && JSON.stringify(a) === JSON.stringify(b)) {
     return true
   }
   
