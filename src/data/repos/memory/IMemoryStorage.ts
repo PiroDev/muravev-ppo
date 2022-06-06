@@ -1,5 +1,5 @@
-import { Player } from '@/data/models'
+import { PlayerData } from '@/dto'
 
 export default interface IMemoryStorage {
-  Players(): {[name: string]: Player }
+  Players(): { [name: string]: PlayerData }
 }

@@ -1,5 +1,5 @@
 import { ISpellRepository } from '@/data/repos'
-import { Spell } from '@/data/models'
+import { SpellData } from '@/dto'
 import MemoryPlayerRepository from '@/data/repos/memory/MemoryPlayerRepository'
 
 export default class MemorySpellRepository implements ISpellRepository {
@@ -9,26 +9,26 @@ export default class MemorySpellRepository implements ISpellRepository {
     this.playerRepo = playerRepo
   }
   
-  AddSpell(playerName: string, spell: Spell): void {
+  AddSpell(playerName: string, spell: SpellData): void {
     const player = this.playerRepo.GetPlayer(playerName)
     if (!player) {
       return
     }
     
-    const spells = player.Spells()
+    const spells = player.Spells
     if (!spells.includes(spell)) {
       spells.push(spell)
     }
   }
   
-  GetSpell(playerName: string, spellName: string): Spell | null {
+  GetSpell(playerName: string, spellName: string): SpellData | null {
     const player = this.playerRepo.GetPlayer(playerName)
     if (!player) {
       return
     }
     
-    const spells = player.Spells()
-    const spell = spells.find(s => s.Name() === spellName)
+    const spells = player.Spells
+    const spell = spells.find(s => s.Name === spellName)
     if (!spell) {
       return null
     }
@@ -42,8 +42,8 @@ export default class MemorySpellRepository implements ISpellRepository {
       return
     }
   
-    const spells = player.Spells()
-    const spellIndex = spells.findIndex(s => s.Name() === spellName)
+    const spells = player.Spells
+    const spellIndex = spells.findIndex(s => s.Name === spellName)
     if (spellIndex !== undefined) {
       spells.splice(spellIndex, 1)
     }

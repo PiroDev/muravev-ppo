@@ -1,14 +1,14 @@
 import IMemoryStorage from '@/data/repos/memory/IMemoryStorage'
-import { Player } from '@/data/models'
+import { PlayerData } from '@/dto'
 
 export default class MemoryStorage implements IMemoryStorage {
-  private readonly storage: { [name: string]: Player }
+  private readonly storage: { [name: string]: PlayerData }
   
-  constructor(storage: { [name: string]: Player }) {
+  constructor(storage: { [name: string]: PlayerData }) {
     this.storage = storage
   }
   
-  Players(): { [name: string]: Player } {
+  Players(): { [name: string]: PlayerData } {
     return this.storage
   }
 }

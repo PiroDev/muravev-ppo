@@ -1,7 +1,7 @@
-import Player from '@/data/models/Player'
+import { PlayerData } from '@/dto'
 
 export default interface IPlayerRepository {
-  AddPlayer(player: Player): void
-  GetPlayer(name: string): Player | null
+  AddPlayer(player: PlayerData): void
+  GetPlayer(name: string): PlayerData | null
   RemovePlayer(name: string): void
 }

@@ -1,7 +1,7 @@
-import Spell from '@/data/models/Spell'
+import { SpellData } from '@/dto'
 
 export default interface ISpellRepository {
-  AddSpell(playerName: string, spell: Spell): void
-  GetSpell(playerName: string, spellName: string): Spell | null
+  AddSpell(playerName: string, spell: SpellData): void
+  GetSpell(playerName: string, spellName: string): SpellData | null
   RemoveSpell(playerName: string, spellName: string): void
 }
