@@ -1,22 +1,64 @@
 import GameContext from '@/game/GameContext'
-import { PlayerData } from '@/structs'
 import { PlayerDataConverter } from '@/game/boundary/converters'
 import { SpellParams } from '@/game/spells'
-import { GameEventBus } from '@/game/events'
+import { EventBus, GameEventBus } from '@/game/events'
 import IPlayerInfo from '@/game/boundary/interfaces/IPlayerInfo'
+import { IPlayerRepository, ISpellRepository } from '@/repos'
+import { PlayerData, SpellData } from '@/dto'
 
 export default class GameInteractor {
   private game: GameContext | null
+  private readonly playerRepo: IPlayerRepository
+  private readonly spellRepo: ISpellRepository
   
-  constructor() {
+  constructor(playerRepo: IPlayerRepository, spellRepo: ISpellRepository) {
+    this.playerRepo = playerRepo
+    this.spellRepo = spellRepo
     this.game = null
   }
   
-  NewGame(playersData: PlayerData[], eventBus: GameEventBus, maxRounds: number = 20): void {
+  GetPlayerData(playerName: string): PlayerData | null {
+    return this.playerRepo.GetPlayer(playerName)
+  }
+  
+  AddPlayerData(playerData: PlayerData) {
+    this.playerRepo.SetPlayer(playerData)
+  }
+  
+  RemovePlayerData(playerName: string) {
+    this.playerRepo.RemovePlayer(playerName)
+  }
+  
+  GetPlayerSpell(playerName: string, spellName: string): SpellData | null {
+    return this.spellRepo.GetSpell(playerName, spellName)
+  }
+  
+  AddPlayerSpell(playerName: string, spellData: SpellData) {
+    this.spellRepo.SetSpell(playerName, spellData)
+  }
+  
+  RemovePlayerSpell(playerName: string, spellName: string) {
+    this.spellRepo.RemoveSpell(playerName, spellName)
+  }
+  
+  NewGame(playerNames: string[], maxRounds: number = 20): GameEventBus | null {
     const converter = new PlayerDataConverter()
+    
+    const playersData = []
+    for (const pName of playerNames) {
+      const playerData = this.playerRepo.GetPlayer(pName)
+      if (!playerData) {
+        return null
+      }
+      playersData.push(playerData)
+    }
+    
     const players = playersData.map(p => converter.Convert(p))
     
+    const eventBus: GameEventBus = new EventBus()
+    
     this.game = new GameContext(players, maxRounds, eventBus)
+    return eventBus
   }
   
   UseSpell(spellId: number, params: SpellParams, mapIdParamsToPlayers: string[] = []): void {
@@ -40,7 +82,7 @@ export default class GameInteractor {
     if (!this.game) {
       return
     }
-
+    
     this.game.EndTurn()
   }
   
@@ -60,11 +102,11 @@ export default class GameInteractor {
     return this.game.GetTurn()
   }
   
-  GetPlayer(playerId: number): IPlayerInfo | null {
+  GetPlayerInGame(playerId: number): IPlayerInfo | null {
     return this.game.GetPlayer(playerId)
   }
   
-  GetPlayers(): IPlayerInfo[] {
+  GetPlayersInGame(): IPlayerInfo[] {
     return this.game.GetPlayers()
   }
 }

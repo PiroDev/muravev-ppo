@@ -6,7 +6,7 @@ type GameEvents = {
     newRound: number
   }
   'game:over': {
-    winner: number | null
+    winner: number | undefined
   }
 }
 

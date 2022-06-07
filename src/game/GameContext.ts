@@ -50,15 +50,17 @@ export default class GameContext {
   EndTurn() {
     this.applyEffectsForTurn()
     
-    this.setNextTurn()
-  
-    if (this.turn === 0) {
-      this.setNextRound()
+    if (this.isGameOver()) {
+      const winner = this.players.findIndex(p => p.Hp() > 0)
+      this.gameEventBus.Emit('game:over', {winner})
+      return
     }
     
-    if (this.isGameOver()) {
-      this.gameEventBus.Emit('game:over', null)
+    if ((this.turn + 1) % this.players.length === 0) {
+      this.setNextRound()
     }
+
+    this.setNextTurn()
   }
   
   IsGameOver(): boolean {
