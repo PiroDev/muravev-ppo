@@ -6,6 +6,8 @@ import IPlayerInfo from '@/game/boundary/interfaces/IPlayerInfo'
 import { IPlayerRepository, ISpellRepository } from '@/repos'
 import { PlayerData, SpellData } from '@/dto'
 
+const MAX_ROUNDS = 20
+
 export default class GameInteractor {
   private game: GameContext | null
   private readonly playerRepo: IPlayerRepository
@@ -41,7 +43,7 @@ export default class GameInteractor {
     this.spellRepo.RemoveSpell(playerName, spellName)
   }
   
-  NewGame(playerNames: string[], maxRounds: number = 20): GameEventBus | null {
+  NewGame(playerNames: string[], maxRounds: number = MAX_ROUNDS): GameEventBus | null {
     const converter = new PlayerDataConverter()
     
     const playersData = []
