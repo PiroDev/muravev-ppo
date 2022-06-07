@@ -62,51 +62,55 @@ export default class GameInteractor {
   }
   
   UseSpell(spellId: number, params: SpellParams, mapIdParamsToPlayers: string[] = []): void {
-    if (!this.game) {
-      return
-    }
-    
-    const mappedParams = {
-      ...params
-    }
-    mapIdParamsToPlayers.forEach(p => {
-      if (p in params) {
-        mappedParams[p] = this.game.GetPlayer(params[p])
+    if (this.isGameStarted()) {
+      const mappedParams = {
+        ...params
       }
-    })
-    
-    this.game.UseSpell(spellId, mappedParams)
+      mapIdParamsToPlayers.forEach(p => {
+        if (p in params) {
+          mappedParams[p] = this.game.GetPlayer(params[p])
+        }
+      })
+  
+      this.game.UseSpell(spellId, mappedParams)
+    }
   }
   
   EndTurn(): void {
-    if (!this.game) {
-      return
+    if (this.isGameStarted()) {
+      this.game.EndTurn()
     }
-    
-    this.game.EndTurn()
   }
   
   GetRound(): number {
-    if (!this.game) {
-      return
+    if (this.isGameStarted()) {
+      return this.game.GetRound()
     }
-    
-    return this.game.GetRound()
   }
   
   GetTurn(): number {
-    if (!this.game) {
-      return
+    if (this.isGameStarted()) {
+      return this.game.GetTurn()
     }
-    
-    return this.game.GetTurn()
   }
   
   GetPlayerInGame(playerId: number): IPlayerInfo | null {
-    return this.game.GetPlayer(playerId)
+    if (this.isGameStarted()) {
+      return this.game.GetPlayer(playerId)
+    }
+    
+    return null
   }
   
   GetPlayersInGame(): IPlayerInfo[] {
-    return this.game.GetPlayers()
+    if (this.isGameStarted()) {
+      return this.game.GetPlayers()
+    }
+    
+    return []
+  }
+  
+  private isGameStarted(): boolean {
+    return this.game !== null
   }
 }
