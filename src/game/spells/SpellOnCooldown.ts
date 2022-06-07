@@ -35,6 +35,14 @@ export default class SpellOnCooldown {
     }
   }
   
+  Name(): string {
+    return this.spell.Name()
+  }
+  
+  Manacost(): number {
+    return this.spell.Manacost()
+  }
+  
   private startCooldown() {
     this.cooldown = this.spell.Cooldown()
   }

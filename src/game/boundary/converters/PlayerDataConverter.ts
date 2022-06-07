@@ -1,4 +1,4 @@
-import { PlayerData } from '@/structs'
+import { PlayerData } from '@/dto'
 import { Player } from '@/game/characters'
 import SpellDataConverter from '@/game/boundary/converters/SpellDataConverter'
 

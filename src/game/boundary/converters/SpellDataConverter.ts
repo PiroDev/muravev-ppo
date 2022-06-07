@@ -1,4 +1,4 @@
-import { SpellData, SpellEffectData } from '@/structs'
+import { SpellData, SpellEffectData } from '@/dto'
 import { Spell, SpellEffect } from '@/game/spells'
 import BaseSpellEffectGetter from '@/game/spells/BaseSpellEffectGetter'
 
