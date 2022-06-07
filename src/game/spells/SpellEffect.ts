@@ -1,7 +1,7 @@
 import BaseSpellEffects from '@/game/spells/BaseSpellEffects'
 
-type SpellEffect<SpellEffectType extends keyof BaseSpellEffects> = {
-  Effect: BaseSpellEffects[SpellEffectType]
+type SpellEffect<EffectType extends keyof Effects, Effects = BaseSpellEffects> = {
+  Effect: Effects[EffectType]
   Params: any[]
 }
 

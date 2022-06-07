@@ -1,7 +1,5 @@
-import { playerTestSuite } from '#/game/PlayerTestSuite'
-import { gameContextTestSuite } from '#/game/GameContextTestSuite'
-import { spellOnCooldownTestSuite } from '#/game/SpellOnCooldownTestSuite'
+import { gameModuleTestSuites } from '#/game'
+import { dataModuleTestSuites } from '#/data'
 
-playerTestSuite()
-gameContextTestSuite()
-spellOnCooldownTestSuite()
+gameModuleTestSuites()
+dataModuleTestSuites()

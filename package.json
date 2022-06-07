@@ -23,6 +23,7 @@
   "homepage": "https://github.com/PiroDev/muravev-ppo#readme",
   "devDependencies": {
     "@types/node": "^17.0.36",
+    "node-localstorage": "^2.2.1",
     "tsc-alias": "^1.6.7",
     "typescript": "^4.6.4"
   }
