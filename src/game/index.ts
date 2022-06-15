@@ -1,3 +1,4 @@
-import { EventBus, GameEvents, GameEventBus } from '@/game/events'
+import * as events from '@/game/events'
+import * as boundary from '@/game/boundary'
 
-export { GameEventBus, EventBus, GameEvents }
+export { events, boundary }
